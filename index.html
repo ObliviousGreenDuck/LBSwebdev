@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Game Idea Generator</title>
+      <style>
+          body {
+              font-family: Arial, sans-serif;
+              text-align: center;
+              background-color: #333;
+          }
+          h1 {
+              color: #AAA;
+              font-size: 6vw;
+          }
+          .content-box {
+              width:60%;  
+              margin:auto;
+              border:0.1vw solid #007bff;
+              padding:3vw;
+              border-radius:5vw;
+          }
+          #generate-button {
+              width:80%;
+              margin:auto;
+              margin-bottom:4vw;
+              padding:2vw;
+              border: none;
+              border-radius: 5vw;
+              cursor: pointer;
+              background-color: #007bff;
+              color:#fff;
+              font-size:3vw;
+          }
+          #word-container {
+              width:80%;
+              margin:auto;
+              border: 0.1vw solid #AAA;
+              color:#FFF;
+              padding:1vw;
+              font-size:2vw;
+              font-weight:bold;
+              border-radius:5vw;
+          }
+          p{
+            margin:0;
+          }
+      </style>
+  </head>
+  <body>
+      <h1>Game Idea Generator</h1>
+      <div class="content-box">
+          <button id="generate-button">Generate Words</button>
+          <div id="word-container">
+              <!-- Generated words will be displayed here -->
+              <p>Click "Generate Words" to generate words :)</p>
+          </div>
+      </div>
+      <script>
+          // Array of words for game ideas
+          const words = [
+              'Adventure', 'Mystery', 'Fantasy', 'Sci-Fi', 'Action', 'Horror',
+              'Puzzle', 'Strategy', 'Simulation', 'Racing', 'Survival', 'Platformer',
+              'RPG', 'Open World', 'Space', 'Zombie', 'Survival Horror', 'First Person', 'Third Person',
+              'Multiplayer', 'Co-op', 'Single Player', 'Magic', 'Medieval', 'Post-Apocalyptic', 'Steampunk',
+              'Dystopian', 'Cyberpunk', 'Time Travel', 'Historical', 'Wild West', 'Martial Arts',
+              'Aliens', 'Robots', 'Dinosaurs', 'Underwater', 'Space Exploration', 'Superheroes', 'Vampires',
+              'Wizards', 'Goblins', 'Dragons', 'Hacking', 'Espionage', 'Crime', 'Noir', 'Detective', 'Gangster',
+              'Survival Sandbox', 'Building', 'Crafting', 'Mystical Creatures', 'Mythology', 'Futuristic',
+              'Alternate History', 'Apocalypse', 'Supernatural', 'Conspiracy', 'Infiltration', 'Tactical',
+              'Post-Apocalyptic', 'Cyber Warfare', 'Time Loop', 'Space Colonization', 'Trading', 'Espionage',
+              'Stealth', 'Surreal', 'Lovecraftian', 'Parallel Universes', 'Hidden Object', 'Maze', 'Martial Arts',
+              'Mecha', 'Espionage', 'Secret Agent', 'Criminal Mastermind', 'Treasure Hunt', 'Historical',
+              'Ghost Hunting', 'Wildlife', 'Cave Exploration', 'Island Survival', 'Warfare', 'Evolution', 'Mutation'
+          ];
+
+          // Function to generate random words
+          function generateRandomWords() {
+              const randomWords = [];
+              while (randomWords.length < 3) {
+                  const randomIndex = Math.floor(Math.random() * words.length);
+                  const randomWord = words[randomIndex];
+                  if (!randomWords.includes(randomWord)) {
+                      randomWords.push(randomWord);
+                  }
+              }
+              return randomWords;
+          }
+
+          // Function to display generated words
+          function displayGeneratedWords() {
+              const wordContainer = document.getElementById('word-container');
+              const randomWords = generateRandomWords();
+              wordContainer.innerHTML = randomWords.join(', ');
+          }
+
+          // Event listener for the button click
+          const generateButton = document.getElementById('generate-button');
+          generateButton.addEventListener('click', displayGeneratedWords);
+      </script>
+  </body>
+</html>
