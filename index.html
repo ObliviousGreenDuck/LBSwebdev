@@ -6,45 +6,50 @@
       <title>Game Idea Generator</title>
       <style>
           body {
-              font-family: Arial, sans-serif;
-              text-align: center;
-              background-color: #333;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #333;
           }
           h1 {
-              color: #AAA;
-              font-size: 6vw;
+            color: #AAA;
+            font-size: 6vw;
           }
           .content-box {
-              width:60%;  
-              margin:auto;
-              border:0.1vw solid #007bff;
-              padding:3vw;
-              border-radius:5vw;
+            width:80%;  
+            margin:auto;
+            border:0.1em solid #007bff;
+            padding:3em;
+            border-radius:5vw;
           }
           #generate-button {
-              width:80%;
-              margin:auto;
-              margin-bottom:4vw;
-              padding:2vw;
-              border: none;
-              border-radius: 5vw;
-              cursor: pointer;
-              background-color: #007bff;
-              color:#fff;
-              font-size:3vw;
+            width:80%;
+            margin:auto;
+            margin-bottom:4vw;
+            padding:2em;
+            border: none;
+            border-radius: 5vw;
+            cursor: pointer;
+            background-color: #007bff;
+            color:#fff;
+            font-size:3vw;
           }
           #word-container {
-              width:80%;
-              margin:auto;
-              border: 0.1vw solid #AAA;
-              color:#FFF;
-              padding:1vw;
-              font-size:2vw;
-              font-weight:bold;
-              border-radius:5vw;
+            width:80%;
+            margin:auto;
+            border: 0.1vw solid #AAA;
+            color:#FFF;
+            font-size:2vw;
+            font-weight:bold;
+            border-radius:5vw;
+            display:grid;
+            grid-template-columns: 50% 50%;
+            align-items: center;
           }
-          p{
-            margin:0;
+          #genre-box{
+            grid-column:1/3;
+          }
+          .randomised-box{
+            padding:1.5em;
           }
       </style>
   </head>
@@ -53,51 +58,231 @@
       <div class="content-box">
           <button id="generate-button">Generate Words</button>
           <div id="word-container">
-              <!-- Generated words will be displayed here -->
-              <p>Click "Generate Words" to generate words :)</p>
+            <div id="genre-box" class="randomised-box">
+            </div>
+            <div id="style-box" class="randomised-box">
+            </div>
+            <div id="mechanics-box" class="randomised-box">
+            </div>
+            <div id="settings-box" class="randomised-box">
+            </div>
+            <div id="additions-box" class="randomised-box">
+            </div>
           </div>
       </div>
+
       <script>
-          // Array of words for game ideas
-          const words = [
-              'Adventure', 'Mystery', 'Fantasy', 'Sci-Fi', 'Action', 'Horror',
-              'Puzzle', 'Strategy', 'Simulation', 'Racing', 'Survival', 'Platformer',
-              'RPG', 'Open World', 'Space', 'Zombie', 'Survival Horror', 'First Person', 'Third Person',
-              'Multiplayer', 'Co-op', 'Single Player', 'Magic', 'Medieval', 'Post-Apocalyptic', 'Steampunk',
-              'Dystopian', 'Cyberpunk', 'Time Travel', 'Historical', 'Wild West', 'Martial Arts',
-              'Aliens', 'Robots', 'Dinosaurs', 'Underwater', 'Space Exploration', 'Superheroes', 'Vampires',
-              'Wizards', 'Goblins', 'Dragons', 'Hacking', 'Espionage', 'Crime', 'Noir', 'Detective', 'Gangster',
-              'Survival Sandbox', 'Building', 'Crafting', 'Mystical Creatures', 'Mythology', 'Futuristic',
-              'Alternate History', 'Apocalypse', 'Supernatural', 'Conspiracy', 'Infiltration', 'Tactical',
-              'Post-Apocalyptic', 'Cyber Warfare', 'Time Loop', 'Space Colonization', 'Trading', 'Espionage',
-              'Stealth', 'Surreal', 'Lovecraftian', 'Parallel Universes', 'Hidden Object', 'Maze', 'Martial Arts',
-              'Mecha', 'Espionage', 'Secret Agent', 'Criminal Mastermind', 'Treasure Hunt', 'Historical',
-              'Ghost Hunting', 'Wildlife', 'Cave Exploration', 'Island Survival', 'Warfare', 'Evolution', 'Mutation'
+          // Arrays of words for game ideas
+          const genre = [
+            'Sidescroller',
+            'RTS (Real time strategy)',
+            'Detektivspel',
+            'Actionspel',
+            'Äventyrsspel',
+            'Rollspel (RPG - Role-Playing Games)',
+            'Förstapersonsskjutare (FPS - First-Person Shooter)',
+            'Tredjepersonsskjutare',
+            'Överlevnadsspel',
+            'Skräckspel',
+            'Strategispel',
+            'Pusselspel',
+            'Simuleringsspel',
+            'Musik- och rytmsspel',
+            'Battle Royale-spel',
+            'Virtual Reality-spel',
+            'Endless mobilspel',
+            'Interaktiva berättelsespel (Interactive Narrative)',
+            'Turn Based-strategi',
           ];
 
-          // Function to generate random words
-          function generateRandomWords() {
-              const randomWords = [];
-              while (randomWords.length < 3) {
-                  const randomIndex = Math.floor(Math.random() * words.length);
-                  const randomWord = words[randomIndex];
-                  if (!randomWords.includes(randomWord)) {
-                      randomWords.push(randomWord);
-                  }
-              }
-              return randomWords;
+          const examples = [
+            'Exempel: "Cuphead", "Meatboy"',
+            'Exempel: "StarCraft", "Warcraft III"',
+            'Exempel: "Return of the Obra Dinn"',
+            'Exempel: "Devil May Cry", "Bayonetta"',
+            'Exempel: "The Legend of Zelda" serien, "Uncharted"',
+            'Exempel: "Final Fantasy" serien, "The Elder Scrolls V: Skyrim"',
+            'Exempel: "Call of Duty" serien, "Counter-Strike: Global Offensive"',
+            'Exempel: "Gears of War," "Max Payne"',
+            'Exempel: "DayZ," "ARK: Survival Evolved"',
+            'Exempel: "Resident Evil" serien, "Amnesia: The Dark Descent"',
+            'Exempel: "Civilization" serien, "StarCraft II"',
+            'Exempel: "Tetris," "Portal" serien',
+            'Exempel: "The Sims" serien, "Microsoft Flight Simulator"',
+            'Exempel: "Guitar Hero" serien, "Dance Dance Revolution"',
+            'Exempel: "Fortnite," "PlayerUnknown\'s Battlegrounds (PUBG)"',
+            'Exempel: "Beat Saber," "Half-Life: Alyx"',
+            'Exempel: "Candy Crush Saga," "Clash of Clans"',
+            'Exempel: "Detroit: Become Human," "Life is Strange"',
+            'Exempel: Schack'
+          ];
+
+          const artisticStyles = [
+            'Geometriskt abstrakt',
+            'Hemskt',
+            'Futuristisk',
+            'Pixel Art',
+            'Realistisk',
+            'Monokromt',
+            'Surrealistiskt',
+            'Tecknad grafik',
+            'Retro- eller 8-bitarsgrafik',
+            'Isometriskt perspektiv',
+            'Low-poly grafik',
+            'Steampunk',
+            'Fantasy',
+            'Cyberpunk',
+            'Neon',
+            'Sci-fi',
+            'Pastelligt',
+            'Skräck',
+            'Expressionistiskt',
+            'Fotokollage',
+            'Grafittistil',
+            'Akvarell'
+          ];
+
+          const gameMechanics = [
+            'Förföljelse',
+            'Undvikande',
+            'Ekonomi/Budgetering',
+            'Plattformsspel: Spelaren navigerar genom olika plattformar och hinder.',
+            'Utforskning: Spelaren kan röra sig fritt i en öppen värld och upptäcka olika platser.',
+            'Fordonshantering: Spelaren kontrollerar fordon som bilar, flygplan eller båtar.',
+            'Stridsbaserat: Spelaren och fienden tar tur att göra drag inom en viss tidsram.',
+            'Realtidsstrid: Strider äger rum i realtid, där spelaren och fienden agerar samtidigt.',
+            'Strid med vapen och stridskonst: Spelaren använder olika vapen eller stridskonster för att besegra fiender.',
+            'Fysikbaserat pussel: Spelaren löser pussel genom att använda fysiklagar och objektinteraktion.',
+            'Logikbaserat pussel: Spelaren löser pussel genom att använda logiskt tänkande och mönsterigenkänning.',
+            'Samarbetsläge: Spelare samarbetar för att uppnå gemensamma mål.',
+            'PvP (Player vs Player): Spelare tävlar mot varandra.',
+            'Öppen värld: En stor värld där spelaren kan utforska olika platser och göra val som påverkar spelets berättelse.',
+            'Utforskningsbaserade uppdrag: Spelaren får uppdrag som involverar att utforska okända områden.',
+            'Karaktärsanpassning: Spelaren kan anpassa sin karaktärs utseende, färdigheter och utrustning.',
+            'Progressionssystem: Spelaren ökar sina färdigheter och/eller utrustning över tid genom att slutföra uppdrag eller besegra fiender.',
+            'Dialogbaserade val: Spelaren gör val i dialoger som påverkar spelets berättelse och utfall.',
+            'Tidsresor: Spelaren kan resa genom tiden för att påverka spelets händelser.',
+            'Tidsbegränsning: Spelaren har en begränsad tid för att slutföra uppdrag eller lösa pussel.',
+            'Samlande av föremål: Spelaren samlar föremål som har olika egenskaper eller värden.',
+            'Crafting: Spelaren kan kombinera olika föremål för att skapa nya och användbara saker.'
+          ];
+
+          const settings = [
+            'Mellanöstern',
+            'Europa 1940-talet',
+            'Arbetsplats',
+            'Högstadieskola',
+            'Fängelse',
+            'Amerikanska inbördeskriget',
+            'London, sekelskifte 1800/1900',
+            'Dystopisk framtid',
+            'Utopisk framtid',
+            'Gaza',
+            'Vallokal',
+            'Bangladesh nutid',
+            '2000-tal',
+            'I ett kylskåp',
+            'Fängelse',
+            'I tunnelbanan',
+            'Domstol/Rättegång',
+            'Natten',
+            'Morgonen',
+            'Ett skrivbord',
+            'På månen',
+            'Sweatshop',
+            'Bondgård i Australien',
+            'Internet 1996',
+            'Draculas slott',
+            'Inuti en tidsmaskin',
+            'En förskola',
+            'Ombord på Titanic',
+            'Götebrog - "inte Göteborg"',
+            'Katrineholm',
+            'I helvetet',
+            'Ungdomsmottagning',
+            'I paradiset',
+            'På stenåldern',
+            'Under jord',
+            'Havet'
+          ];
+
+          const additions = [
+            'Krigsbrott',
+            'Rätten till skola',
+            'Resursfördelning',
+            'Demonstration',
+            'Fly från ett fängelse',
+            'Barnarbete',
+            'Protest mot för långa arbetstider',
+            'En slav blir fri',
+            'Religionsfrihet',
+            'Rätt till kultur',
+            'Kolonialisering',
+            'Arbetsvillkor',
+            'Medborgarskap',
+            'Frivilla giftemål',
+            'Yttrandefrihet',
+            'Rätt till privatliv',
+            'Människohandel',
+            'Ursprungsbefolkning',
+            'Biljetter',
+            'Giftermål',
+            'Diplomati',
+            'Omröstning',
+            'Sy 20 t-shirts på en dag',
+            'Taket rasar in',
+            'Bomber faller',
+            'Samla bevis',
+            'Dekryptera hemliga meddelanden',
+            'Musik',
+            'En sko',
+            'Lappar i lådor',
+            'Stekpanna',
+            'Trasig moped',
+            'Vatten',
+            'Dagbok',
+            'Diskmedel',
+            'Jazz',
+            'Fallskärm',
+            'Hår',
+            'Kamera',
+            'En råtta',
+            'Leksaker',
+            'Taxi'
+          ];
+
+          //randomise function, takes list input
+          function randomiseIndex(a){
+            const randomIndex = Math.floor(Math.random() * a.length);
+            return randomIndex;
           }
 
-          // Function to display generated words
-          function displayGeneratedWords() {
-              const wordContainer = document.getElementById('word-container');
-              const randomWords = generateRandomWords();
-              wordContainer.innerHTML = randomWords.join(', ');
+          // Function to generate and display words
+          function generateBrainstorm() {
+              const genreContainer = document.getElementById('genre-box');
+              const styleContainer = document.getElementById('style-box');
+              const mechContainer = document.getElementById('mechanics-box');
+              const settingContainer = document.getElementById('settings-box');
+              const additionsContainer = document.getElementById('additions-box');
+
+              const genreIndex = randomiseIndex(genre);
+              const randomGenre = genre[genreIndex] + ", " + examples[genreIndex];
+
+              const randomStyle = artisticStyles[randomiseIndex(artisticStyles)];
+              const randomMechanics = gameMechanics[randomiseIndex(gameMechanics)];
+              const randomSetting = settings[randomiseIndex(settings)];
+              const randomAdditions = additions[randomiseIndex(additions)];
+
+              genreContainer.innerHTML = randomGenre;
+              styleContainer.innerHTML = randomStyle;
+              mechContainer.innerHTML = randomMechanics;
+              settingContainer.innerHTML = randomSetting;
+              additionsContainer.innerHTML = randomAdditions;
           }
 
           // Event listener for the button click
           const generateButton = document.getElementById('generate-button');
-          generateButton.addEventListener('click', displayGeneratedWords);
+          generateButton.addEventListener('click', generateBrainstorm);
       </script>
   </body>
 </html>
