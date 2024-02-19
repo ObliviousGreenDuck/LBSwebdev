@@ -1,0 +1,46 @@
+body{
+    background-color: #222;
+    padding: 2rem;
+    color: #FEFFCC;
+    font-family: Helvetica;
+}
+
+.box-container{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 2rem;
+}
+
+.box{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    width: 20rem;
+    height: 20rem;
+    border-radius: 0.5rem;
+    font-size: 2rem;
+}
+
+#red{
+    background-color: #C00;
+}
+
+#yellow{
+    background-color: #8D9426;
+}
+
+#green{
+    background-color: #006100;
+}
+
+#blue{
+    background-color: #0000AF;
+}
+
+#hidden-lorem{
+    display: none;
+}
+.box:hover{
+    translate: 2rem 2rem 2rem;
+}
